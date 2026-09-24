@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#121214" />
+  <meta name="description" content="Vision Pro 概念站。看见整间屋子：眼动、手势，与停在空间里的界面。" />
+  <title>Vision Pro</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23121414'/%3E%3Crect x='5' y='13' width='22' height='7' rx='3.5' fill='%23ece7ee'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="./css/site.css?v=74" />
+</head>
+<body>
+  <div class="bar" aria-hidden="true"><span data-bar></span></div>
+
+  <header>
+    <a class="brand" href="#hero">
+      <span class="appmark" aria-hidden="true"><img src="./assets/mark.jpg" alt="" /></span>
+      <span class="brand-name" data-brand>Vision Pro</span>
+    </a>
+    <nav aria-label="页面">
+      <a class="pill" href="#clarity">规格</a>
+    </nav>
+    <p class="pct" data-pct>0%</p>
+  </header>
+
+  <main>
+    <section class="scene scene-dark" id="hero">
+      <div class="pin hero-pin">
+        <video class="hero-video" data-hero-video src="./assets/hero.mp4" muted playsinline preload="auto"></video>
+        <h1 class="hero-word" data-word>VISION PRO</h1>
+        <div class="scroll-hint" data-hint>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 14l6-6 6 6" /></svg>
+          <svg class="mouse" viewBox="0 0 48 72" aria-hidden="true">
+            <rect x="8" y="6" width="32" height="52" rx="16" />
+            <circle class="wheel" cx="24" cy="22" r="3" />
+          </svg>
+          <p>向下滚动</p>
+          <small>探索更多</small>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 10l6 6 6-6" /></svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene-dark" id="split">
+      <div class="pin explode-pin">
+        <p class="explode-label">结构</p>
+        <div class="explode" data-explode>
+          <img data-layer="0" src="./assets/explode-glass.png" alt="" />
+          <img data-layer="1" src="./assets/explode-shell.png" alt="" />
+          <img data-layer="2" src="./assets/explode-connect.png" alt="" />
+          <img data-layer="3" src="./assets/explode-mech.png" alt="" />
+          <img data-layer="4" src="./assets/explode-frame.png" alt="" />
+        </div>
+        <ul class="explode-notes">
+          <li>外层玻璃</li>
+          <li>外壳</li>
+          <li>连接层</li>
+          <li>机构</li>
+          <li>内框</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="scene scene-light" id="field">
+      <div class="pin">
+        <div class="stage field-stage">
+          <video class="field-photo" data-field-video src="./assets/field.mp4" muted playsinline preload="auto" loop></video>
+          <p class="field-caption">界面停在空间里。<br />不是另一块屏幕。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene-light" id="clarity">
+      <div class="pin">
+        <div class="stage clarity-stage">
+          <div class="clarity-head">
+            <h2>看得清楚</h2>
+            <p>为房间调校，而不是为另一块屏幕。</p>
+          </div>
+          <div class="spec-photos">
+            <figure><img src="./assets/sensors.jpg" alt="正面传感器" /></figure>
+            <figure><img src="./assets/ir.jpg" alt="红外镜头" /></figure>
+            <figure><img src="./assets/band.jpg" alt="双圈编织头带" /></figure>
+            <figure><img src="./assets/foundation.jpg" alt="Apple Vision Pro 正面" /></figure>
+          </div>
+          <ol class="specs" data-specs>
+            <li>视线与手同时在场。点选不需要拿起任何东西。</li>
+            <li>应用以窗口悬在房间里。远近、大小，由你决定。</li>
+            <li>环境可以是你的客厅，也可以是一片安静的景。</li>
+            <li>外侧的灯亮着，身边的人就知道它正在注视。</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene shelf-scene" id="bento">
+      <div class="pin">
+        <div class="shelf">
+          <h2 class="shelf-title">声声动听。</h2>
+          <div class="shelf-row">
+            <a class="store-card story" href="https://www.apple.com.cn/apple-music" target="_blank" rel="noreferrer">
+              <strong>Apple Music<br />免费试听三个月。</strong>
+              <em>购买指定 Apple 设备可享此福利。</em>
+              <img src="./assets/store/music.webp" alt="Mac、iPad、iPhone、Apple Watch 与 Apple Music" />
+            </a>
+            <a class="store-card goods" href="https://www.apple.com.cn/shop/product/mkfw4ch/a" target="_blank" rel="noreferrer">
+              <img src="./assets/store/airpods5.jpg" alt="AirPods 5" />
+              <span class="tag">新款</span>
+              <h3>AirPods 5</h3>
+              <p class="price">RMB 999</p>
+            </a>
+            <a class="store-card goods" href="https://www.apple.com.cn/shop/product/mfhp4ch/a" target="_blank" rel="noreferrer">
+              <img src="./assets/store/airpodspro.jpg" alt="AirPods Pro 3" />
+              <span class="tag">免费镌刻服务</span>
+              <h3>AirPods Pro 3</h3>
+              <p class="price">RMB 1,899</p>
+            </a>
+            <a class="store-card goods" href="https://www.apple.com.cn/airpods-max/" target="_blank" rel="noreferrer">
+              <img src="./assets/store/airpodsmax.jpg" alt="午夜色 AirPods Max 2" />
+              <span class="tag">免费镌刻服务</span>
+              <h3>AirPods Max 2 - 午夜色</h3>
+              <p class="price">RMB 3,999</p>
+            </a>
+            <a class="store-card goods" href="https://www.apple.com.cn/shop/product/mx743ch/a" target="_blank" rel="noreferrer">
+              <img src="./assets/store/powerbeats.jpg" alt="高能橙 Powerbeats Pro 2" />
+              <h3>Powerbeats Pro 2 — 高性能耳机 — 高能橙</h3>
+              <p class="price">RMB 2,099</p>
+            </a>
+            <a class="store-card goods" href="https://www.apple.com.cn/shop/product/mdex4ch/a" target="_blank" rel="noreferrer">
+              <img src="./assets/store/homepod.jpg" alt="午夜色 HomePod" />
+              <h3>HomePod - 午夜色</h3>
+              <p class="price">RMB 2,699</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene shelf-scene" id="audience">
+      <div class="pin">
+        <div class="shelf">
+          <h2 class="shelf-title">全方位 Apple 体验。<span>让 Apple 产品和服务助你大显身手。</span></h2>
+          <div class="shelf-row">
+            <a class="store-card story" href="https://www.apple.com.cn/macos/continuity" target="_blank" rel="noreferrer">
+              <em class="kicker">连续互通</em>
+              <strong>单个独当一面，<br />组队势不可挡。</strong>
+              <img src="./assets/store/continuity.webp" alt="Mac、iPhone、iPad 与 Apple Watch 显示同一份设计稿" />
+            </a>
+            <a class="store-card story" href="https://www.apple.com.cn/store" target="_blank" rel="noreferrer">
+              <em class="kicker">APPLE STORE APP</em>
+              <strong>满足心意，随礼送出。</strong>
+              <em>附上一段专门写给他们的个性赠言，送出独一无二的专属好礼。</em>
+              <img src="./assets/store/gift.webp" alt="Apple Store App 礼品" />
+            </a>
+            <a class="store-card story" href="https://www.apple.com.cn/support/products/" target="_blank" rel="noreferrer">
+              <em class="kicker">AppleCare+</em>
+              <strong>周全保护有保障。</strong>
+              <em>AppleCare+ 服务计划现可提供不限次数的意外损坏保修服务。</em>
+              <img src="./assets/store/care.webp" alt="AppleCare+" />
+            </a>
+            <a class="store-card story" href="https://www.apple.com.cn/ios/home" target="_blank" rel="noreferrer">
+              <em class="kicker">家庭</em>
+              <strong>看看一个 app 如何掌控你的整个家。</strong>
+              <img src="./assets/store/home.webp" alt="家庭 app 与 HomePod" />
+            </a>
+            <a class="store-card goods" href="https://www.apple.com.cn/shop/product/mj2k3ch/a" target="_blank" rel="noreferrer">
+              <img src="./assets/store/minipod.jpg" alt="橙色 HomePod mini" />
+              <h3>HomePod mini - 橙色</h3>
+              <p class="price">RMB 999</p>
+            </a>
+            <a class="store-card goods" href="https://www.apple.com.cn/shop/product/muw33ch/a" target="_blank" rel="noreferrer">
+              <img src="./assets/store/beats-solo.jpg" alt="云彩粉 Beats Solo 4" />
+              <h3>Beats Solo 4 — 无线头戴式耳机 – 云彩粉</h3>
+              <p class="price">RMB 1,799</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <canvas class="water" data-water aria-hidden="true"></canvas>
+  <div class="cursor" data-cursor aria-hidden="true">
+    <div class="cursor-inner" data-cursor-inner>
+      <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" /></svg>
+      <span data-cursor-label>点击开启声音</span>
+    </div>
+  </div>
+  <script src="./js/site.js?v=69"></script>
+</body>
+</html>

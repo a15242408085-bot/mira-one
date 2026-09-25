@@ -247,6 +247,7 @@ body.is-light .pct { color: var(--light-muted); }
 .shelf-title span { font-weight: 500; color: #6e6e73; }
 .shelf-row {
   display: flex;
+  align-items: stretch;
   gap: 16px;
   overflow-x: auto;
   padding: 0 28px 18px;
@@ -254,7 +255,7 @@ body.is-light .pct { color: var(--light-muted); }
 }
 .store-card {
   flex: 0 0 292px;
-  height: min(68vh, 520px);
+  height: min(74vh, 560px);
   background: #fff;
   border-radius: 18px;
   scroll-snap-align: start;
@@ -264,9 +265,10 @@ body.is-light .pct { color: var(--light-muted); }
   overflow: hidden;
 }
 #bento .store-card {
-  height: auto;
+  height: 500px;
   border-radius: 22px;
 }
+#audience .store-card { height: 520px; }
 .store-card img {
   transition: transform 0.5s ease;
 }
@@ -316,18 +318,18 @@ body.is-light .pct { color: var(--light-muted); }
   margin-top: auto;
   width: calc(100% + 40px);
   margin-left: -20px;
-  height: 58%;
+  height: 60%;
   object-fit: contain;
   object-position: center bottom;
 }
-.store-card.goods { padding: 8px 16px 20px; }
+.store-card.goods { padding: 18px 20px 22px; }
 .store-card.goods img {
   width: 100%;
-  height: 62%;
+  height: 270px;
   object-fit: contain;
 }
-#bento .store-card.story img { height: 210px; }
-#bento .store-card.goods img { height: 220px; }
+#bento .store-card.story img { height: 250px; }
+#bento .store-card.goods img { height: 270px; }
 .store-card .tag {
   color: #bf4800;
   font-size: 12px;
@@ -1105,6 +1107,10 @@ form button { letter-spacing: 0.14em; font-size: 13px; }
     overflow: auto;
     padding-top: 72px;
   }
+  .store-card, #bento .store-card, #audience .store-card { height: 430px; }
+  #bento .store-card.goods, #bento .store-card.story { height: 430px; }
+  #bento .store-card.goods img { height: 220px; }
+  #bento .store-card.story img { height: 210px; }
   .card-hero, .card-curve, .card-logo, .card-pass, .card-gesture, .card-travel, .card-note {
     grid-column: auto;
     grid-row: auto;

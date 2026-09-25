@@ -938,15 +938,16 @@ body.is-light .pct { color: var(--light-muted); }
   counter-reset: spec;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 36px;
+  max-width: 720px;
 }
 
 .specs li {
   counter-increment: spec;
   font-size: clamp(18px, 1.7vw, 26px);
   letter-spacing: -0.03em;
-  line-height: 1.35;
-  padding-left: 48px;
+  line-height: 1.45;
+  padding-left: 56px;
   position: relative;
 }
 
@@ -954,8 +955,8 @@ body.is-light .pct { color: var(--light-muted); }
   content: counter(spec, decimal-leading-zero);
   position: absolute;
   left: 0;
-  top: 0.15em;
-  font-size: 12px;
+  top: 0.2em;
+  font-size: 13px;
   letter-spacing: 0.08em;
   color: var(--light-muted);
 }

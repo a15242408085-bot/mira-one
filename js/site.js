@@ -110,9 +110,9 @@ function place(name, locals) {
 
   const clarityT = locals.clarity;
   specs.forEach((item, index) => {
-    const t = clamp((clarityT - index * 0.18) / 0.22);
-    item.style.opacity = String(0.22 + t * 0.78);
-    item.style.transform = `translateY(${(1 - t) * 14}px)`;
+    const t = clamp((clarityT - index * 0.14) / 0.28);
+    item.style.opacity = String(0.34 + t * 0.66);
+    item.style.transform = `translateY(${(1 - t) * 7}px)`;
   });
 }
 

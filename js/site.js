@@ -11,8 +11,6 @@ let autoBrowse = false;
 let autoFrame = null;
 let autoLastTime = 0;
 let autoVelocity = 0;
-let autoPauseUntil = 0;
-let autoWaypointIndex = 0;
 let heroWant = 0;
 
 if (heroVideo) {
@@ -297,7 +295,6 @@ function stopAutoBrowse() {
   autoFrame = null;
   autoLastTime = 0;
   autoVelocity = 0;
-  autoPauseUntil = 0;
   autoTrigger?.classList.remove("is-active");
   autoTrigger?.setAttribute("aria-pressed", "false");
   if (autoTrigger) autoTrigger.textContent = "自动浏览";
@@ -308,9 +305,6 @@ function startAutoBrowse() {
   autoBrowse = true;
   autoLastTime = 0;
   autoVelocity = 0;
-  autoPauseUntil = 0;
-  autoWaypointIndex = scenes.findIndex((scene) => scene.offsetTop > root.scrollTop + 40);
-  if (autoWaypointIndex < 0) autoWaypointIndex = scenes.length;
   autoTrigger?.classList.add("is-active");
   autoTrigger?.setAttribute("aria-pressed", "true");
   if (autoTrigger) autoTrigger.textContent = "暂停浏览";
@@ -324,16 +318,11 @@ function startAutoBrowse() {
       stopAutoBrowse();
       return;
     }
-    const nextScene = scenes[autoWaypointIndex];
-    if (nextScene && nextScene.offsetTop - root.scrollTop < 90) {
-      autoPauseUntil = Math.max(autoPauseUntil, time + (reduce ? 0 : 360));
-      autoWaypointIndex += 1;
-    }
     const remaining = maxScroll - root.scrollTop;
-    const maxSpeed = reduce ? 84 : 184;
-    const braking = reduce ? 330 : 620;
-    const cruise = time < autoPauseUntil ? 0 : Math.min(maxSpeed, Math.sqrt(2 * braking * Math.max(remaining, 0)));
-    autoVelocity += (cruise - autoVelocity) * Math.min(1, dt * 4.2);
+    const maxSpeed = reduce ? 150 : 360;
+    const braking = reduce ? 520 : 900;
+    const cruise = Math.min(maxSpeed, Math.sqrt(2 * braking * Math.max(remaining, 0)));
+    autoVelocity += (cruise - autoVelocity) * Math.min(1, dt * 5.2);
     root.scrollTop += autoVelocity * dt;
     autoFrame = window.requestAnimationFrame(move);
   };

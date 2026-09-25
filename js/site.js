@@ -90,7 +90,9 @@ function place(name, locals) {
   const heroT = locals.hero;
   const splitT = locals.split;
 
-  const heroFade = name === "hero" ? 1 - clamp((heroT - 0.78) / 0.22) : 0;
+  const heroFadeProgress = clamp((heroT - 0.48) / 0.48);
+  const heroFadeEase = heroFadeProgress * heroFadeProgress * (3 - 2 * heroFadeProgress);
+  const heroFade = name === "hero" ? 1 - heroFadeEase : 0;
   if (heroWord) heroWord.style.opacity = String(heroFade);
   if (heroHint) heroHint.style.opacity = String(name === "hero" ? 1 - clamp((heroT - 0.62) / 0.28) : 0);
   scrubHero(locals.hero, name);

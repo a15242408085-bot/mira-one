@@ -179,6 +179,7 @@ body.is-light .pct { color: var(--light-muted); }
   line-height: 1;
   text-indent: 0.14em;
   pointer-events: none;
+  will-change: opacity, transform;
 }
 .scroll-hint {
   position: absolute;

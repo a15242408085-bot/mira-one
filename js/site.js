@@ -93,7 +93,10 @@ function place(name, locals) {
   const heroFadeProgress = clamp((heroT - 0.48) / 0.48);
   const heroFadeEase = heroFadeProgress * heroFadeProgress * (3 - 2 * heroFadeProgress);
   const heroFade = name === "hero" ? 1 - heroFadeEase : 0;
-  if (heroWord) heroWord.style.opacity = String(heroFade);
+  if (heroWord) {
+    heroWord.style.opacity = String(heroFade);
+    heroWord.style.transform = `translate3d(0, ${heroFadeEase * Math.min(window.innerHeight * 0.055, 64)}px, 0)`;
+  }
   if (heroHint) heroHint.style.opacity = String(name === "hero" ? 1 - clamp((heroT - 0.62) / 0.28) : 0);
   scrubHero(locals.hero, name);
   playField(name);

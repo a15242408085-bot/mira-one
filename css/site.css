@@ -391,21 +391,24 @@ body.is-light .pct { color: var(--light-muted); }
 @media (max-width: 900px) {
   .apple-cols { grid-template-columns: 1fr 1fr; }
 }
-#clarity { height: 230vh; }
+#clarity {
+  height: 230vh;
+  background: linear-gradient(to bottom, var(--light) 0%, #f5f5f7 100%);
+}
 #clarity::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 38vh;
+  height: 28vh;
   z-index: 4;
   pointer-events: none;
   background: linear-gradient(
     to bottom,
-    rgba(18, 18, 20, 0) 0%,
-    rgba(18, 18, 20, 0.45) 36%,
-    #3a3a3e 62%,
+    rgba(230, 225, 234, 0) 0%,
+    rgba(230, 225, 234, 0.45) 38%,
+    rgba(245, 245, 247, 0.92) 78%,
     #f5f5f7 100%
   );
 }

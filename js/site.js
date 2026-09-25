@@ -6,6 +6,8 @@ const brand = document.querySelector("[data-brand]");
 const heroWord = document.querySelector("[data-word]");
 const heroHint = document.querySelector("[data-hint]");
 const heroVideo = document.querySelector("[data-hero-video]");
+const sectionSwitch = document.querySelector("[data-section-switch]");
+const sectionTrigger = document.querySelector(".section-trigger");
 let heroWant = 0;
 
 if (heroVideo) {
@@ -275,8 +277,22 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     const el = document.getElementById(id);
     if (!el) return;
     event.preventDefault();
+    sectionSwitch?.classList.remove("is-open");
+    sectionTrigger?.setAttribute("aria-expanded", "false");
     window.scrollTo({ top: el.offsetTop, behavior: reduce ? "auto" : "smooth" });
   });
+});
+
+sectionTrigger?.addEventListener("click", () => {
+  const open = sectionSwitch.classList.toggle("is-open");
+  sectionTrigger.setAttribute("aria-expanded", String(open));
+});
+
+document.addEventListener("pointerdown", (event) => {
+  if (sectionSwitch && !sectionSwitch.contains(event.target)) {
+    sectionSwitch.classList.remove("is-open");
+    sectionTrigger?.setAttribute("aria-expanded", "false");
+  }
 });
 
 frame();

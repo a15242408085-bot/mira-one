@@ -325,10 +325,10 @@ function startAutoBrowse() {
       autoWaypointIndex += 1;
     }
     const remaining = maxScroll - root.scrollTop;
-    const maxSpeed = reduce ? 42 : 92;
-    const braking = reduce ? 180 : 320;
+    const maxSpeed = reduce ? 84 : 184;
+    const braking = reduce ? 330 : 620;
     const cruise = time < autoPauseUntil ? 0 : Math.min(maxSpeed, Math.sqrt(2 * braking * Math.max(remaining, 0)));
-    autoVelocity += (cruise - autoVelocity) * Math.min(1, dt * 3.8);
+    autoVelocity += (cruise - autoVelocity) * Math.min(1, dt * 4.2);
     root.scrollTop += autoVelocity * dt;
     autoFrame = window.requestAnimationFrame(move);
   };

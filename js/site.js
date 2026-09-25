@@ -8,6 +8,7 @@ const heroHint = document.querySelector("[data-hint]");
 const heroVideo = document.querySelector("[data-hero-video]");
 const autoTrigger = document.querySelector("[data-auto-trigger]");
 let autoBrowse = false;
+let autoTimer = null;
 let heroWant = 0;
 
 if (heroVideo) {
@@ -254,17 +255,6 @@ function frame() {
   pointer.cy += (pointer.y - pointer.cy) * (reduce ? 1 : 0.16);
   if (cursorInner) cursorInner.style.transform = `translate(${pointer.cx}px, ${pointer.cy}px) translate(-21px, -21px)`;
   drawWater(performance.now());
-  if (autoBrowse) {
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    if (window.scrollY >= maxScroll - 1) {
-      autoBrowse = false;
-      autoTrigger?.classList.remove("is-active");
-      autoTrigger?.setAttribute("aria-pressed", "false");
-      if (autoTrigger) autoTrigger.textContent = "自动浏览";
-    } else {
-      window.scrollBy(0, reduce ? 0.35 : 0.65);
-    }
-  }
   target = window.scrollY / metrics();
   shown += (target - shown) * (reduce ? 1 : 0.09);
   if (Math.abs(target - shown) < 0.0005) shown = target;
@@ -292,11 +282,35 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   });
 });
 
+function stopAutoBrowse() {
+  autoBrowse = false;
+  if (autoTimer) window.clearInterval(autoTimer);
+  autoTimer = null;
+  autoTrigger?.classList.remove("is-active");
+  autoTrigger?.setAttribute("aria-pressed", "false");
+  if (autoTrigger) autoTrigger.textContent = "自动浏览";
+}
+
+function startAutoBrowse() {
+  const root = document.scrollingElement || document.documentElement;
+  autoBrowse = true;
+  autoTrigger?.classList.add("is-active");
+  autoTrigger?.setAttribute("aria-pressed", "true");
+  if (autoTrigger) autoTrigger.textContent = "暂停浏览";
+  if (autoTimer) window.clearInterval(autoTimer);
+  autoTimer = window.setInterval(() => {
+    const maxScroll = root.scrollHeight - window.innerHeight;
+    if (root.scrollTop >= maxScroll - 1) {
+      stopAutoBrowse();
+      return;
+    }
+    root.scrollTop += reduce ? 1 : 2;
+  }, 16);
+}
+
 autoTrigger?.addEventListener("click", () => {
-  autoBrowse = !autoBrowse;
-  autoTrigger.classList.toggle("is-active", autoBrowse);
-  autoTrigger.setAttribute("aria-pressed", String(autoBrowse));
-  autoTrigger.textContent = autoBrowse ? "暂停浏览" : "自动浏览";
+  if (autoBrowse) stopAutoBrowse();
+  else startAutoBrowse();
 });
 
 frame();

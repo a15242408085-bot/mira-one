@@ -8,7 +8,11 @@ const heroHint = document.querySelector("[data-hint]");
 const heroVideo = document.querySelector("[data-hero-video]");
 const autoTrigger = document.querySelector("[data-auto-trigger]");
 let autoBrowse = false;
-let autoTimer = null;
+let autoFrame = null;
+let autoLastTime = 0;
+let autoVelocity = 0;
+let autoPauseUntil = 0;
+let autoWaypointIndex = 0;
 let heroWant = 0;
 
 if (heroVideo) {
@@ -284,8 +288,11 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
 function stopAutoBrowse() {
   autoBrowse = false;
-  if (autoTimer) window.clearInterval(autoTimer);
-  autoTimer = null;
+  if (autoFrame) window.cancelAnimationFrame(autoFrame);
+  autoFrame = null;
+  autoLastTime = 0;
+  autoVelocity = 0;
+  autoPauseUntil = 0;
   autoTrigger?.classList.remove("is-active");
   autoTrigger?.setAttribute("aria-pressed", "false");
   if (autoTrigger) autoTrigger.textContent = "自动浏览";
@@ -294,18 +301,38 @@ function stopAutoBrowse() {
 function startAutoBrowse() {
   const root = document.scrollingElement || document.documentElement;
   autoBrowse = true;
+  autoLastTime = 0;
+  autoVelocity = 0;
+  autoPauseUntil = 0;
+  autoWaypointIndex = scenes.findIndex((scene) => scene.offsetTop > root.scrollTop + 40);
+  if (autoWaypointIndex < 0) autoWaypointIndex = scenes.length;
   autoTrigger?.classList.add("is-active");
   autoTrigger?.setAttribute("aria-pressed", "true");
   if (autoTrigger) autoTrigger.textContent = "暂停浏览";
-  if (autoTimer) window.clearInterval(autoTimer);
-  autoTimer = window.setInterval(() => {
+  const move = (time) => {
+    if (!autoBrowse) return;
+    if (!autoLastTime) autoLastTime = time;
+    const dt = Math.min((time - autoLastTime) / 1000, 0.05);
+    autoLastTime = time;
     const maxScroll = root.scrollHeight - window.innerHeight;
     if (root.scrollTop >= maxScroll - 1) {
       stopAutoBrowse();
       return;
     }
-    root.scrollTop += reduce ? 1 : 2;
-  }, 16);
+    const nextScene = scenes[autoWaypointIndex];
+    if (nextScene && nextScene.offsetTop - root.scrollTop < 90) {
+      autoPauseUntil = Math.max(autoPauseUntil, time + (reduce ? 0 : 360));
+      autoWaypointIndex += 1;
+    }
+    const remaining = maxScroll - root.scrollTop;
+    const maxSpeed = reduce ? 42 : 92;
+    const braking = reduce ? 180 : 320;
+    const cruise = time < autoPauseUntil ? 0 : Math.min(maxSpeed, Math.sqrt(2 * braking * Math.max(remaining, 0)));
+    autoVelocity += (cruise - autoVelocity) * Math.min(1, dt * 3.8);
+    root.scrollTop += autoVelocity * dt;
+    autoFrame = window.requestAnimationFrame(move);
+  };
+  autoFrame = window.requestAnimationFrame(move);
 }
 
 autoTrigger?.addEventListener("click", () => {
